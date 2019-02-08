@@ -1,16 +1,60 @@
-let ourData;
+let movie  = document.getElementById("movie");
 
-var ourRequest = new  XMLHttpRequest();
-ourRequest.open("GET", "https://swapi.co/api/?format=json");
-//.onload when the data loaded what should happen
-ourRequest.onload = function(){
- console.log(ourRequest.status);
-if(ourRequest.status == 200){
-ourData = JSON.parse(ourRequest.responseText);
-//renderHTML(ourData);
-console.log("success!!");
-console.log(ourData);
+const container = document.createElement('div');
+container.setAttribute('class', 'container');
+
+function getJesonData(atribute){
+let Http = new XMLHttpRequest();
+let url='https://swapi.co/api/'+atribute+'/?format=json';
+Http.open("GET", url);
+Http.send();
+Http.onload=(e)=>{
+
+let data = JSON.parse(Http.responseText)
+console.log(data.results);
+let datas = data.results;
+
+datas.forEach(x=>{
+  let h2 = document.createElement('h2');
+  let h3 = document.createElement('h3');
+  let p = document.createElement('p');
+  let btnCharacter = document.createElement('button');
+  btnCharacter.setAttribute('id', 'cha');
+  let btnPlanets = document.createElement('button');
+  let btnVehicles = document.createElement('button');
 
 
-https://swapi.co/api/planets/?format=json
-https://swapi.co/api/people/1/?format=json
+      h2.textContent = x.title;
+      p.textContent = x.opening_crawl;
+      h3.textContent = `Director `+x.director+` and Producer `+x.producer;
+      btnCharacter.textContent = `Characters`;
+      btnPlanets.textContent = `Planets`;
+      btnVehicles.textContent = `Vehicles`
+
+
+
+      //console.log(title);
+
+      //console.log(typeof(x));
+
+      //console.log(btnCharacter);
+      //movie.appendChild(h2)
+      movie.appendChild(h2)
+      movie.appendChild(p)
+      movie.appendChild(h3)
+      movie.appendChild(btnCharacter)
+      movie.appendChild(btnPlanets)
+      movie.appendChild(btnVehicles)
+      btnCharacter.insertAdjacentElement("afterend",h3 );
+});
+}
+
+
+}
+
+function hello(){
+  console.log("Hello");
+}
+
+//https://swapi.co/api/planets/?format=json
+//https://swapi.co/api/people/1/?format=json

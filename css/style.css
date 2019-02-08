@@ -1,0 +1,25 @@
+.container {
+  background-color: gray;
+}
+
+.card {
+  margin: 1rem;
+  border: 1px solid gray;
+}
+
+h2 {
+  background-color: black;
+  color: yellow;
+  font-family: 'Staatliches', cursive;
+font-family: 'Patua One', cursive;
+}
+h2:hover{
+  color: blue;
+}
+
+.color{
+  color: yellow;
+}
+.hide{
+  display: none;
+}

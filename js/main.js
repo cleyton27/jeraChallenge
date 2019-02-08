@@ -1,31 +1,41 @@
-let movieInfo = document.getElementById("movie-info")
-let btn = document.getElementById("btn");
-let ourData;
+const app = document.getElementById('root');
 
-btn.addEventListener("click", function(){
-  var ourRequest = new  XMLHttpRequest();
-  ourRequest.open("GET", "https://swapi.co/api/?format=json");
- //.onload when the data loaded what should happen
- ourRequest.onload = function(){
-   console.log(ourRequest.status);
-if(ourRequest.status == 200){
-  ourData = JSON.parse(ourRequest.responseText);
- //renderHTML(ourData);
- console.log("success!!");
- console.log(ourData);
+const logo = document.createElement('img');
+logo.src = 'logo.png';
 
+const container = document.createElement('div');
+container.setAttribute('class', 'container');
 
- //console.log(ourData.characters.length);
+app.appendChild(logo);
+app.appendChild(container);
 
+var request = new XMLHttpRequest();
+request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
+request.onload = function () {
 
+  // Begin accessing JSON data here
+  var data = JSON.parse(this.response);
+  if (request.status >= 200 && request.status < 400) {
+    data.forEach(movie => {
+      const card = document.createElement('div');
+      card.setAttribute('class', 'card');
 
-}else {
- console.log(ourRequest.satus);
- console.log("We conneted to the server, but it returned an error. "+ourRequest.status );
+      const h1 = document.createElement('h1');
+      h1.textContent = movie.title;
+
+      const p = document.createElement('p');
+      movie.description = movie.description.substring(0, 300);
+      p.textContent = `${movie.description}...`;
+
+      container.appendChild(card);
+      card.appendChild(h1);
+      card.appendChild(p);
+    });
+  } else {
+    const errorMessage = document.createElement('marquee');
+    errorMessage.textContent = `Gah, it's not working!`;
+    app.appendChild(errorMessage);
+  }
 }
 
- };
-
- ourRequest.send();
-
-});
+request.send();
