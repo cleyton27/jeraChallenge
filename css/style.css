@@ -14,12 +14,9 @@ h2 {
 font-family: 'Patua One', cursive;
 }
 h2:hover{
-  color: blue;
+  color: ;
 }
 
 .color{
   color: yellow;
-}
-.hide{
-  display: none;
 }
