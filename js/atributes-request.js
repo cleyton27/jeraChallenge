@@ -1,9 +1,11 @@
-let movie  = document.getElementById("movie");
+
+
+
 
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-function getJesonData(atribute){
+function getJesonData(atribute, funct){
 let Http = new XMLHttpRequest();
 let url='https://swapi.co/api/'+atribute+'/?format=json';
 Http.open("GET", url);
@@ -14,14 +16,28 @@ let data = JSON.parse(Http.responseText)
 console.log(data.results);
 let datas = data.results;
 
+showDatas(datas);
+
+
+}
+
+
+}
+
+
+
+
+
+//essa função recebe um array de dado como parametro e monta os elementos HTML e monstra as informações na tela
+function showDatas(datas){
 datas.forEach(x=>{
-  let h2 = document.createElement('h2');
-  let h3 = document.createElement('h3');
-  let p = document.createElement('p');
-  let btnCharacter = document.createElement('button');
+   h2 = document.createElement('h2');
+   h3 = document.createElement('h3');
+   p = document.createElement('p');
+   btnCharacter = document.createElement('button');
   btnCharacter.setAttribute('id', 'cha');
-  let btnPlanets = document.createElement('button');
-  let btnVehicles = document.createElement('button');
+   btnPlanets = document.createElement('button');
+   btnVehicles = document.createElement('button');
 
 
       h2.textContent = x.title;
@@ -47,13 +63,7 @@ datas.forEach(x=>{
       movie.appendChild(btnVehicles)
       btnCharacter.insertAdjacentElement("afterend",h3 );
 });
-}
 
-
-}
-
-function hello(){
-  console.log("Hello");
 }
 
 //https://swapi.co/api/planets/?format=json
