@@ -1,3 +1,5 @@
+let divCharacter = document.createElement('div')
+
 
 let btn = document.getElementById("btn-movie")
 btn.addEventListener("click", function(){
@@ -9,6 +11,7 @@ getJesonData(btn.value, showDataFilms);
 //função que obtem os intens da Api e cria elementos html para mostrar informações dos filmes
 function showDataFilms(datas){
 datas.forEach(x=>{
+  let divFilm = document.createElement('div')
   let h2 = document.createElement('h2');
   let h3 = document.createElement('h3');
   let p = document.createElement('p');
@@ -25,13 +28,21 @@ datas.forEach(x=>{
       btnPlanets.textContent = `Planets`;
       btnVehicles.textContent = `Vehicles`
 
-      movie.appendChild(h2)
-      movie.appendChild(p)
-      movie.appendChild(h3)
-      movie.appendChild(btnCharacter)
-      movie.appendChild(btnPlanets)
-      movie.appendChild(btnVehicles)
-      btnCharacter.insertAdjacentElement("afterend",h3 );
+      divFilm.appendChild(h2)
+      divFilm.appendChild(p)
+      divFilm.appendChild(h3)
+      divFilm.appendChild(btnCharacter)
+      divFilm.appendChild(btnPlanets)
+      divFilm.appendChild(btnVehicles)
+      divFilm.appendChild(divCharacter)
+      movie.appendChild(divFilm)
+
+      btnCharacter.addEventListener("click", function(){
+        btnCharacter.value = "people";
+        getJesonData(btnCharacter.value, showDataCharacters)
+      })
+
+
 });
 
 }

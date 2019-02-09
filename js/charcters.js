@@ -5,12 +5,17 @@ btnC.addEventListener("click",function(){
   getJesonData(btnC.value, showDataCharacters)
 })
 
+
+
+
 function showDataCharacters(datas){
 datas.forEach(x=>{
-  let h2 = document.createElement('h2');
-      h2.textContent = x.name;
+  let h2Name = document.createElement('h2');
+  let div = document.createElement('div')
+      h2Name.textContent = x.name;
 
-      movie.appendChild(h2)
+        div.appendChild(h2Name)
+
 });
 
 }
