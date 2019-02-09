@@ -1,11 +1,9 @@
-
-
-
+let movie  = document.getElementById("movie");
 
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-function getJesonData(atribute, funct){
+function getJesonData(atribute){
 let Http = new XMLHttpRequest();
 let url='https://swapi.co/api/'+atribute+'/?format=json';
 Http.open("GET", url);
@@ -15,29 +13,21 @@ Http.onload=(e)=>{
 let data = JSON.parse(Http.responseText)
 console.log(data.results);
 let datas = data.results;
-
-showDatas(datas);
-
+showData(datas)
+}
 
 }
 
+function showData(datas){
 
-}
-
-
-
-
-
-//essa função recebe um array de dado como parametro e monta os elementos HTML e monstra as informações na tela
-function showDatas(datas){
 datas.forEach(x=>{
-   h2 = document.createElement('h2');
-   h3 = document.createElement('h3');
-   p = document.createElement('p');
-   btnCharacter = document.createElement('button');
+  let h2 = document.createElement('h2');
+  let h3 = document.createElement('h3');
+  let p = document.createElement('p');
+  let btnCharacter = document.createElement('button');
   btnCharacter.setAttribute('id', 'cha');
-   btnPlanets = document.createElement('button');
-   btnVehicles = document.createElement('button');
+  let btnPlanets = document.createElement('button');
+  let btnVehicles = document.createElement('button');
 
 
       h2.textContent = x.title;
@@ -47,14 +37,6 @@ datas.forEach(x=>{
       btnPlanets.textContent = `Planets`;
       btnVehicles.textContent = `Vehicles`
 
-
-
-      //console.log(title);
-
-      //console.log(typeof(x));
-
-      //console.log(btnCharacter);
-      //movie.appendChild(h2)
       movie.appendChild(h2)
       movie.appendChild(p)
       movie.appendChild(h3)
