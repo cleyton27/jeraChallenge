@@ -3,7 +3,7 @@ let movie  = document.getElementById("movie");
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
 
-function getJesonData(atribute){
+function getJesonData(atribute, func){
 let Http = new XMLHttpRequest();
 let url='https://swapi.co/api/'+atribute+'/?format=json';
 Http.open("GET", url);
@@ -13,40 +13,12 @@ Http.onload=(e)=>{
 let data = JSON.parse(Http.responseText)
 console.log(data.results);
 let datas = data.results;
-showData(datas)
+func(datas);
 }
 
 }
 
-function showData(datas){
 
-datas.forEach(x=>{
-  let h2 = document.createElement('h2');
-  let h3 = document.createElement('h3');
-  let p = document.createElement('p');
-  let btnCharacter = document.createElement('button');
-  btnCharacter.setAttribute('id', 'cha');
-  let btnPlanets = document.createElement('button');
-  let btnVehicles = document.createElement('button');
-
-
-      h2.textContent = x.title;
-      p.textContent = x.opening_crawl;
-      h3.textContent = `Director `+x.director+` and Producer `+x.producer;
-      btnCharacter.textContent = `Characters`;
-      btnPlanets.textContent = `Planets`;
-      btnVehicles.textContent = `Vehicles`
-
-      movie.appendChild(h2)
-      movie.appendChild(p)
-      movie.appendChild(h3)
-      movie.appendChild(btnCharacter)
-      movie.appendChild(btnPlanets)
-      movie.appendChild(btnVehicles)
-      btnCharacter.insertAdjacentElement("afterend",h3 );
-});
-
-}
 
 //https://swapi.co/api/planets/?format=json
 //https://swapi.co/api/people/1/?format=json
