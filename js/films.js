@@ -1,6 +1,5 @@
 let divCharacter = document.createElement('div')
 
-
 let btn = document.getElementById("btn-movie")
 btn.addEventListener("click", function(){
   btn.value = "films";

@@ -12,7 +12,7 @@ Http.onload=(e)=>{
 
 let data = JSON.parse(Http.responseText)
 console.log(data.results);
-console.log(data.results[2].characters);
+//console.log(data.results[2].characters);
 
 let datas = data.results;
 getCharacters(datas)
@@ -33,11 +33,14 @@ if(data.results[i] == datas.lentgh){
 
 
 function getCharacters(datas){
-  for (var i = 0; i < datas.length; i++) {
-    let characters = datas[i].characters
-    console.log(characters);
+  datas.forEach(x=>{
+    let i = 0
+    console.log(x.characters);
+    console.log(x.characters[i]);
+
+  })
   }
-}
+
 
 
 
